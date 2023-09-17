@@ -6,7 +6,7 @@ import { DaoMongoose } from "./DaoMongoose.js"
 const productsCollection = 'products'
 
 const productSchema = new Schema({
-    nombre: { type: String, required: true },
+    nombre: { type: String, required: true, unique: true },
     estado: { type: Boolean, default: true },
 }, { versionKey: false })
 

@@ -5,8 +5,9 @@ import { DaoMongoose } from './DaoMongoose.js'
 const pedidosCollection = 'pedidos'
 
 const pedidoSchema = new Schema({
-  product_id: { type: Array, default: [], ref: "products" },
+  product_id: { type: Schema.Types.ObjectId, ref: "products" },
   estado: { type: String, default: 'empezar preparacion' },
+  orden: { type: String, default: "" },
   cantidad: { type: Number, required: true },
   adicionales: { type: Array, default: [] },
   aderezos: { type: Array, default: []}

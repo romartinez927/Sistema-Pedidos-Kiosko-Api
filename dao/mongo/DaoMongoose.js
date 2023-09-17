@@ -85,13 +85,8 @@ function toPojo(object) {
       return result
     }
   
-    async updateProd(cartId, productId, quantity) {
-      const result = await this.#model.updateOne({ _id: cartId, 'product_id.product': productId }, { $set: { 'products.$.quantity': quantity } })
-      return result
-    }
-  
     async updateOne(criteria, newData) {
-      const modifiedUser = await this.#model.findOneAndUpdate(criteria, newData, { new: true, projection: { _id: 0 } }).lean()
+      const modifiedUser = await this.#model.findOneAndUpdate({_id: criteria}, newData, { new: true, projection: { _id: 0 } }).lean()
       if (!modifiedUser) throw new Error('NOT FOUND')
       delete modifiedUser._id
       return modifiedUser
