@@ -6,7 +6,6 @@ export class Producto {
         if (!nombre || typeof nombre !== 'string') throw new Error("falta el titulo")
         this.#nombre = nombre
         
-        if (typeof estado !== 'boolean') throw new Error("El estado debe ser un booleano")
         this.#estado = estado
     }
 

@@ -69,13 +69,13 @@ export async function handlePutEstado(req, res, next) {
         else if (pedido.estado == 'empezar preparacion') {
           pedido.estado = 'preparando';
           await pedido.save();
-          return res.status(400).json({ estado: 'preparando' });
+          return res.status(200).json({ estado: 'preparando' });
         }
     
         else if (pedido.estado == 'preparando') {
             pedido.estado = 'finalizado';
             await pedido.save();
-            return res.status(400).json({ estado: 'finalizado' });
+            return res.status(200).json({ estado: 'finalizado' });
           }
     
       } catch (error) {
