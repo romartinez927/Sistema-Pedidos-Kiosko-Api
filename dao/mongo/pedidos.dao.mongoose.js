@@ -10,7 +10,7 @@ const pedidoSchema = new Schema({
   orden: { type: String, default: "" },
   cantidad: { type: Number, required: true },
   adicionales: { type: Array, default: [] },
-  aderezos: { type: Array, default: []}
+  aderezos: { type: Array, default: []},
 }, {versionKey: false})
 
 export const pedidoModel = mongoose.model(pedidosCollection, pedidoSchema)
