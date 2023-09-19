@@ -26,7 +26,7 @@ function toPojo(object) {
     }
 
     async getAllWithPopulate() {
-      const result = await this.#model.find().populate("product_id.product").lean()
+      const result = await this.#model.find().populate("product_id").lean()
       return result
     }
   
@@ -37,7 +37,7 @@ function toPojo(object) {
     }
   
     async getByIdWithPopulate(id) {
-      const result = await this.#model.findById(id).populate("product_id.product").lean()
+      const result = await this.#model.findById(id).populate("product_id").lean()
       return result
     }
   

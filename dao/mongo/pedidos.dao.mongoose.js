@@ -9,8 +9,8 @@ const pedidoSchema = new Schema({
   estado: { type: String, default: 'empezar preparacion' },
   orden: { type: String, default: "" },
   cantidad: { type: Number, required: true },
-  adicionales: { type: Array, default: [] },
-  aderezos: { type: Array, default: []},
+  adicionales: { type: Array, default: [], ref: "adicionales" },
+  aderezos: { type: Array, default: [], ref: "aderezos"},
 }, {versionKey: false})
 
 export const pedidoModel = mongoose.model(pedidosCollection, pedidoSchema)
