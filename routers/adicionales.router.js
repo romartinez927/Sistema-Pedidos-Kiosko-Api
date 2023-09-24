@@ -4,5 +4,6 @@ export const adicionalesRouter = Router()
 
 adicionalesRouter.get('/', adicionalesController.handleGet)
 adicionalesRouter.post('/', adicionalesController.handlePost)
+adicionalesRouter.put('/:adicional', adicionalesController.handlePut)
 
 

@@ -31,7 +31,6 @@ export async function handlePost(req, res, next) {
 
 export async function handlePut(req, res, next) {
     try {
-        const producto = new Producto(req.body)
         const productoReemplazado = await productosRepository.updateOne(req.params.pid, req.body)
         res.json(productoReemplazado)
     } catch (error) {
