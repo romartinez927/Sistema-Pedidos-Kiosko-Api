@@ -11,6 +11,7 @@ const pedidoSchema = new Schema({
   cantidad: { type: Number, required: true },
   adicionales: { type: Array, default: [], ref: "adicionales" },
   aderezos: { type: Array, default: [], ref: "aderezos"},
+  nota: { type:String, default: "" }
 }, {versionKey: false})
 
 export const pedidoModel = mongoose.model(pedidosCollection, pedidoSchema)

@@ -5,13 +5,15 @@ export class Pedido {
     #adicionales
     #aderezos
     #cantidad
+    #nota
 
-    constructor({ product_id, estado, cantidad, adicionales, aderezos }) {
+    constructor({ product_id, estado, cantidad, adicionales, aderezos, nota }) {
         this.#product_id = product_id
         this.#estado = estado
         this.#adicionales = adicionales
         this.#cantidad = cantidad
         this.#aderezos = aderezos
+        this.#nota = nota
     }
 
     get id() { return this.#id }
@@ -19,6 +21,7 @@ export class Pedido {
     get estado() { return this.#estado }
     get cantidad() { return this.#cantidad }
     get adicionales() { return this.#adicionales }
+    get nota() { return this.#nota }
     get aderezos() { return this.#aderezos }
 
     datos() {
@@ -29,6 +32,7 @@ export class Pedido {
             cantidad: this.#cantidad,
             adicionales: this.#adicionales,
             aderezos: this.#aderezos,
+            nota: this.#nota,
         }
     }
 }
