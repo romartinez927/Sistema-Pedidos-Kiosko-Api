@@ -19,3 +19,22 @@ export async function handlePost(req, res, next) {
         next(error)
     }
 }
+
+
+export async function handlePut(req, res, next) {
+    try {
+        const aderezoReemplazado = await aderezosRepository.updateOne(req.params.aderezo, req.body)
+        res.json(aderezoReemplazado)
+    } catch (error) {
+        return next(error)  
+    }
+}
+
+export async function handleDelete(req, res, next) {
+    try {
+        const borrada = await aderezosRepository.borrarSegunId(req.params.aderezo)
+        res.json(borrada)
+    } catch (error) {
+        next(error)
+    }
+}

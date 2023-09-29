@@ -4,4 +4,5 @@ export const aderezosRouter = Router()
 
 aderezosRouter.get('/', aderezosController.handleGet)
 aderezosRouter.post('/', aderezosController.handlePost)
-
+aderezosRouter.put('/:aderezo', aderezosController.handlePut)
+aderezosRouter.delete('/:aderezo', aderezosController.handleDelete)

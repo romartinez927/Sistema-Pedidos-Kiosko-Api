@@ -28,3 +28,12 @@ export async function handlePut(req, res, next) {
         return next(error)  
     }
 }
+
+export async function handleDelete(req, res, next) {
+    try {
+        const borrada = await adicionalesRepository.borrarSegunId(req.params.adicional)
+        res.json(borrada)
+    } catch (error) {
+        next(error)
+    }
+}
