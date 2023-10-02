@@ -6,6 +6,7 @@ const pedidosCollection = 'pedidos'
 
 const pedidoSchema = new Schema({
   product_id: { type: Schema.Types.ObjectId, ref: "products" },
+  titulo: { type: String},
   estado: { type: String, default: 'empezar preparacion' },
   orden: { type: String, default: "" },
   cantidad: { type: Number, required: true },
