@@ -40,6 +40,7 @@ app.use(session({
 app.use(passportInitialize, passportSession)
 
 const PORT = 4000
+const httpServer = app.listen(PORT)
 
 app.use("/", apiRouter)
 
