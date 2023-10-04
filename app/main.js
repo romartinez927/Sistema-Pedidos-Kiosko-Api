@@ -15,7 +15,15 @@ conectar()
 dotenv.config({path:"./api/.env"})
 export const app = express()
 
-app.use(cors())
+
+const corsOptions = {
+    origin: 'https://sistema-kiosko.netlify.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  };
+  
+app.use(cors(corsOptions));
+
 app.use(express.static("public"))
 app.use(cookieParser())
 app.use(session({
@@ -32,35 +40,6 @@ app.use(session({
 app.use(passportInitialize, passportSession)
 
 const PORT = 4000
-const httpServer = app.listen(PORT)
-
-const corsOptions = {
-  origin: 'https://sistema-kiosko.netlify.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-
-const io = new SocketIOServer(httpServer, {
-    cors: {
-        origin: ["https://sistema-kiosko.netlify.app", "http://localhost:5173"],
-        methods: ["GET", "POST"]
-    }
-})
-
-io.on("connection", async clientSocket => {
-    console.log(`Usuario conectado ${clientSocket.id}`)
-    clientSocket.on("send_message", (data) => {
-        clientSocket.broadcast.emit("enviar_estado", data)
-    })
-
-    clientSocket.on("send_prueba", (data) => {
-        const prueba = data.message
-        // console.log(prueba)
-        clientSocket.broadcast.emit("enviar_prueba", prueba)
-    })
-})
 
 app.use("/", apiRouter)
 
