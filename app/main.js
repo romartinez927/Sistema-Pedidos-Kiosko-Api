@@ -54,7 +54,7 @@ io.on("connection", async clientSocket => {
     })
 })
 
-app.use("/api", apiRouter)
+app.use("/", apiRouter)
 
 console.log(`Escuchando en port ${PORT}`)
 
