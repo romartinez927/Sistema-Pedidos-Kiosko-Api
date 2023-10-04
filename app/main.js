@@ -34,6 +34,14 @@ app.use(passportInitialize, passportSession)
 const PORT = 4000
 const httpServer = app.listen(PORT)
 
+const corsOptions = {
+  origin: 'https://sistema-kiosko.netlify.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 const io = new SocketIOServer(httpServer, {
     cors: {
         origin: ["https://sistema-kiosko.netlify.app", "http://localhost:5173"],
