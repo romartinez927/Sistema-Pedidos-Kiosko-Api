@@ -42,7 +42,7 @@ const io = new SocketIOServer(httpServer, {
 })
 
 io.on("connection", async clientSocket => {
-    // console.log(`Usuario conectado ${clientSocket.id}`)
+    console.log(`Usuario conectado ${clientSocket.id}`)
     clientSocket.on("send_message", (data) => {
         clientSocket.broadcast.emit("enviar_estado", data)
     })
