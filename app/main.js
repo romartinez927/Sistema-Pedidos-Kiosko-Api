@@ -55,6 +55,13 @@ io.on("connection", async clientSocket => {
 })
 
 app.use("/", apiRouter)
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://deluxe-lolly-660eac.netlify.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+  });
 
 console.log(`Escuchando en port ${PORT}`)
 
