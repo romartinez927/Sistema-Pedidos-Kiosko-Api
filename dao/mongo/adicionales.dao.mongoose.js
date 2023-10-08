@@ -7,6 +7,7 @@ const adicionalesCollection = 'adicionales'
 const adicionalSchema = new Schema({
     nombre: { type: String, required: true },
     estado: { type: Boolean, default: true },
+    precio: { type: Number }
 }, {versionKey: false})
 
 export const adicionalModel = mongoose.model(adicionalesCollection, adicionalSchema)

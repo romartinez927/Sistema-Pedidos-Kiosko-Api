@@ -10,6 +10,15 @@ export async function handleGet(req, res, next) {
     }
 }
 
+export async function handleGetById(req, res, next) {
+    try {
+        const aderezo = await aderezosRepository.obtenerSegunId(req.params.aderezo)
+        res.json(aderezo)
+    } catch (error) {
+        next(error)
+    }
+}
+
 export async function handlePost(req, res, next) {
     try {
         const aderezo = new Aderezo(req.body)

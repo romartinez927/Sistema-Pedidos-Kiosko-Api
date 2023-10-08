@@ -10,6 +10,15 @@ export async function handleGet(req, res, next) {
     }
 }
 
+export async function handleGetById(req, res, next) {
+    try {
+        const aderezo = await adicionalesRepository.obtenerSegunId(req.params.adicional)
+        res.json(aderezo)
+    } catch (error) {
+        next(error)
+    }
+}
+
 export async function handlePost(req, res, next) {
     try {
         const adicional = new Adicional(req.body)

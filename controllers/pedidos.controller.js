@@ -1,4 +1,5 @@
 import { Pedido } from "../models/Pedido.js"
+import { adicionalesRepository } from "../repositories/adicionales.repository.js"
 import { pedidosRepository } from "../repositories/pedidos.repository.js"
 import { productosRepository } from "../repositories/products.repository.js"
 
@@ -22,8 +23,37 @@ export async function handleGetById(req, res, next) {
 
 export async function handlePost(req, res, next) {
     try {
+        // Nuevo Pedido
         const pedido = new Pedido(req.body)
         const pedidoCreado = await pedidosRepository.create(pedido.datos())
+        console.log(pedidoCreado)
+        let total 
+        if (pedidoCreado) {
+            // Obtengo precio segun la cantidad del producto
+            const producto_id = pedidoCreado.product_id
+            const quantity = pedidoCreado.cantidad
+            const totalProducto = await productosRepository.getTotalPrice(producto_id, quantity)
+            total = totalProducto
+            // console.log(total)
+
+            // Obtengo precio segun adicionales del pedido
+            const adicionales = pedidoCreado.adicionales
+            const adicionalesIds = adicionales.map((adicional) => adicional.id)
+            const producto = await productosRepository.obtenerSegunId(producto_id)
+            const adicionalesProductoIds = producto.adicionalesPredeterminados.map((adicional) => adicional.id)
+            const idsNoRepetidos = adicionalesIds.filter(id => !adicionalesProductoIds.includes(id));
+            
+            const totalAdicionales = await adicionalesRepository.getTotalPrice(idsNoRepetidos);
+            // console.log(totalAdicionales)
+
+            // Precio total del pedido
+            total += totalAdicionales
+            const newPedido = await pedidosRepository.obtenerSegunId(pedidoCreado._id);
+            newPedido.total = total
+            await newPedido.save();
+            console.log(total)
+        }
+        
         res.json(pedidoCreado)
     } catch (error) {
         next(error)

@@ -17,7 +17,7 @@ export const app = express()
 
 
 const corsOptions = {
-    origin: 'https://sistema-kiosko.netlify.app',
+    origin: ["https://sistema-kiosko.netlify.app", "http://localhost:5173"],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   };
